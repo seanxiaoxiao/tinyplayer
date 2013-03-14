@@ -108,27 +108,29 @@ ul {
     position: relative;
     background-color: #111;
     color: #eee;
-    height: 60px;
+    height: 80px;
+    width: 625px;
 }
 
-#controlUI .cover-image{
+#controlUI #cover-image{
     background-color: #fff;
     display: inline-block;
-    height: 60px; width: 60px;
+    background-size: cover;
+    height: 80px; width: 80px;
 }
 
-#controlUI #fft { width: 500px; height: 60px; left: 100px; top: 0; position: absolute;}
+#controlUI #fft { width: 445px; height: 80px; left: 130px; top: 0; position: absolute;}
 
-#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; background-image: url(img/pause.png);}
+#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; background-image: url(img/pause.png); background-size: cover;}
 #controlUI #toggleButton.paused { background-image: url(img/play.png); }
 
 #prevButton {
     position: absolute;
-    height: 30px; width: 30px; left: 70px; top: 15px;
+    height: 30px; width: 30px; left: 90px; top: 25px;
 }
 #nextButton { 
     position: absolute;
-    height: 30px; width: 30px; right: 10px; top: 15px;
+    height: 30px; width: 30px; right: 10px; top: 25px;
 }
 
 .controlButton {  opacity: 0.2; cursor: pointer;}

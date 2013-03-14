@@ -25,9 +25,9 @@ var playerInstance = playerInstance || {};
 			this.audioElement.load();
 		},
 		play : function(num){
-			if(num){ 
-				this.setSrc(this.playList[num].url);
+			if(num !== undefined){
 				this.currentPlay = num;
+				this.setSrc(this.playList[num].url);
 			}
 			this.audioElement.play();
 		},

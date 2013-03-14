@@ -109,6 +109,7 @@ var tinyPlayer = tinyPlayer || {};
       songRow.text(song.title);
       songRow.click(function(index) {
         return function() {
+          console.log('index', index);
           drivePlayer.playerInstance.play(index);
           drivePlayer.refreshUI();
           //drivePlayer.refreshDancer();
@@ -148,6 +149,7 @@ var tinyPlayer = tinyPlayer || {};
     var currentPlay = drivePlayer.playerInstance.playList[drivePlayer.playerInstance.currentPlay];
     if (currentPlay) {
       $("#song-title").text(currentPlay.title);
+      return currentPlay.title;
     }
   };
 

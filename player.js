@@ -11,7 +11,7 @@ var drivePlayer = drivePlayer || {};
       this.googleAuth();
       this.eventBinding();
       this.initDancer();
-      //tinyPlayer.updateSongTitle();
+      tinyPlayer.updateSongTitle();
       if(this.playerInstance.audioElement.paused){ $('#toggleButton').addClass('paused'); }
       else { 
         $('#toggleButton').removeClass('paused');
@@ -80,17 +80,21 @@ var drivePlayer = drivePlayer || {};
     refreshUI : function(){
       this.refreshDancer();
       this.dancerInstance.play();
-      tinyPlayer.updateSongTitle();
-      /*$.get('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&format=json',
-        {
-          api_key : '9bf923f841ec4a5ff44912c2d7980bc8',
-          artist : 'Muse',
-          track : 'New Born'
+      var title = tinyPlayer.updateSongTitle().slice(0, -4).split('-');
+      $('#controlUI #cover-image').css('background-image', '');
+      $.ajax({
+        url: 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&format=json',
+        data: {
+          'api_key' : '9bf923f841ec4a5ff44912c2d7980bc8',
+          'artist' : (title[0])? title[0].replace(/(^\s*)|(\s*$)/g, ""):'',
+          'track' : (title[1])? title[1].replace(/(^\s*)|(\s*$)/g, ""):'' 
         },
-        function(data){
-          console.log(data);
-        }
-      );*/
+        success: function(data){
+          var medCover = data.track.album.image[1]['#text'];
+          $('#controlUI #cover-image').css('background-image', 'url('+medCover+')');
+        },
+        dataType: 'json'
+      });
 
     },
 
@@ -109,7 +113,7 @@ var drivePlayer = drivePlayer || {};
         that.refreshDancer();
         tinyPlayer.updateSongTitle();
         if(that.dancerInstance.isPlaying()){ that.dancerInstance.pause(); }
-        else { that.dancerInstance.play(); }
+        else { that.refreshUI(); } //that.dancerInstance.play(); }
       });
 
       $('#prevButton').on('click', function(){

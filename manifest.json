@@ -1,6 +1,6 @@
 {
   "name": "Tiny Player",
-  "version": "0.3",
+  "version": "0.31",
   "description": "tiny Player",
   "permissions": [
     "notifications",
