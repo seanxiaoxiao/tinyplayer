@@ -7,21 +7,11 @@ var allPlaylists;
     playlist = {
 
         initialize:function () {
-            this.googleAuth();
             this.getPlaylistsFromFolder();
         },
 
-        googleAuth:function (callback) {
-            this.googleAuthInstance = new OAuth2('google', {
-                client_id:'359878478762.apps.googleusercontent.com',
-                client_secret:'8mTXIIQD9zXgVAHfAESOzfh8',
-                api_scope:'https://www.googleapis.com/auth/drive'
-            });
-            this.googleAuthInstance.authorize(callback);
-        },
-
         getPlaylistsFromFolder:function () {
-
+//            try to get files from a specific folder
 //            var folder_id = "0B0HMC2KvkVnkb2FTT28yWlFGWVk"; //id of root folder
 //            $.get("https://www.googleapis.com/drive/v2/files/" + folder_id + "/children?access_token=" + this.googleAuthInstance.getAccessToken(), function (data) {
 
