@@ -10,7 +10,7 @@ var allSongs;
             this.googleAuth();
             this.eventBinding();
             this.createPlaylist();
-        this.getPlaylists();
+            this.getPlaylists();
             $('#controlUI').append(this.playerInstance.audioElement);
         },
 
@@ -23,26 +23,8 @@ var allSongs;
             this.googleAuthInstance.authorize(callback);
         },
 
-        // A sample function...
-        /*loadFirstSong : function(){
-         var that = this;
-         $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
-         // iterate and find the first mp3 file
-         var fileLink;
-         for(var i=0; i<data.items.length; ++i){
-         if(data.items[i].fileExtension === "mp3"){
-         fileLink = data.items[i].webContentLink;
-         break;
-         }
-         }
-         // load the mp3 file into the background audio element
-         that.playerInstance.setSrc(fileLink);
-         that.playerInstance.play();
-         });
-         },*/
-
         createPlaylist:function () {
-        var uploadFunc = this.uploadPlaylist;
+            var uploadFunc = this.uploadPlaylist;
             $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken(), function (data) {
                 console.log(data);
                 var playlistContainer = $("#current-list tbody");
@@ -84,9 +66,9 @@ var allSongs;
             });
         },
 
-        getPlaylists:function(){
+        getPlaylists:function () {
             q = "title contains playlist";
-            $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken()+"&q="+ q, function (data) {
+            $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken() + "&q=" + q, function (data) {
                 console.log(data);
 
             });
@@ -220,5 +202,7 @@ $(document).ready(function () {
 function shareHandler(evt) {
     drivePlayer.shareFile(evt.target.id);
 }
+
+
 
 
