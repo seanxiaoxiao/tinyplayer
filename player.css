@@ -109,8 +109,8 @@ ul {
 
 #controlUI #fft { width: 500px; height: 60px; left: 100px; top: 0; position: absolute;}
 
-#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; background-image: url(img/play.png);}
-#controlUI #toggleButton.paused { background-image: url(img/pause.png); }
+#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; background-image: url(img/pause.png);}
+#controlUI #toggleButton.paused { background-image: url(img/play.png); }
 
 #prevButton {
     position: absolute;

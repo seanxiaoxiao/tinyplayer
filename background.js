@@ -21,7 +21,10 @@ var playerInstance = playerInstance || {};
 			this.audioElement.load();
 		},
 		play : function(num){
-			if(num){ this.setSrc(this.playList[num].url); }
+			if(num){ 
+				this.setSrc(this.playList[num].url);
+				this.currentPlay = num;
+			}
 			this.audioElement.play();
 		},
 		pause : function(){	this.audioElement.pause(); },
