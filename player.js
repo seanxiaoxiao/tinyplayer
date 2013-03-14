@@ -14,7 +14,9 @@ var drivePlayer = drivePlayer || {};
       if(this.playerInstance.audioElement.paused){ $('#toggleButton').addClass('paused'); }
       else { 
         $('#toggleButton').removeClass('paused');
-        //this.refreshDancer();
+        this.refreshDancer();
+        this.dancerInstance.play();
+        //this.dancerInstance.audioAdapter.audio.currentTime = this.playerInstance.audioElement.currentTime;
       }
       if (drivePlayer.playerInstance.playList.length == 0) {
         this.getAllMp3();
@@ -71,7 +73,6 @@ var drivePlayer = drivePlayer || {};
       var currentFile = this.playerInstance.playList[this.playerInstance.currentPlay].url;
       this.dancerInstance.load({ src: currentFile, codecs: [ 'mp3' ]});
       this.dancerInstance.setVolume(0);
-      //this.dancerInstance.audioAdapter.audio.currentTime = this.playerInstance.audioElement.currentTime;
     },
 
     eventBinding : function(){
