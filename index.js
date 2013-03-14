@@ -100,6 +100,12 @@ var tinyPlayer = tinyPlayer || {};
       songRow.attr("data-link", song.url);
       songRow.attr("data-id", song.id);
       songRow.text(song.title);
+      songRow.click(function(index) {
+        return function() {
+          drivePlayer.playerInstance.play(index);
+          tinyPlayer.updateSongTitle();
+        }
+      }(i));
       var shareButton = $("<a href='#' class='share-btn'>Share</a>");
       songRow.append(shareButton);
       listElement.append(songRow);
@@ -110,7 +116,8 @@ var tinyPlayer = tinyPlayer || {};
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
-        shareInput.blur(function() {
+        shareInput.blur(function(e) {
+          e.stopPropagation();
           $(this).parent().remove();
           var userVal = $(this).val();
           sharing.shareFile(fileId, userVal);
@@ -120,6 +127,14 @@ var tinyPlayer = tinyPlayer || {};
     }
     listElement.find("div").draggable();
 
+  };
+
+  tinyPlayer.updateSongTitle = function() {
+    var currentPlay = drivePlayer.playerInstance.currentPlay;
+    console.log(currentPlay);
+    if (currentPlay) {
+      $("song-title").text(currentPlay);
+    }
   };
 
 
