@@ -73,8 +73,10 @@ var tinyPlayer = tinyPlayer || {};
         var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
+        var fileId = $(this).parent().attr("data-id");
         shareInput.blur(function() {
-          this.remove();
+          console.log($(this).val());
+          $(this).remove();
         })
       });
     }
