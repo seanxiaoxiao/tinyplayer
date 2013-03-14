@@ -10,7 +10,6 @@ var allSongs;
       this.googleAuth();
       this.eventBinding();
       this.createPlaylist();
-      $('#controlUI').append(this.playerInstance.audioElement);
     },
 
     googleAuth : function(callback){
@@ -42,7 +41,6 @@ var allSongs;
 
     createPlaylist : function(){
       $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
-          console.log(data);
           var playlistContainer = $("#current-list tbody");
         // iterate and find the mp3 files
           var songs = [];
@@ -88,10 +86,16 @@ var allSongs;
 
     eventBinding : function(){
       var that = this;
-      $('#playlist tbody').on('click', 'tr td:first', function(){
+      $('#current-list tbody').on('click', 'tr td:first', function(){
+        console.log("clicked");
         var fileLink = $(this).parent().attr('data-link');
         that.playerInstance.setSrc(fileLink);
         that.playerInstance.play();
+      });
+
+      $('#toggleButton').on('click', function(){
+        that.playerInstance.toggle();
+        $(this).toggleClass('paused');
       });
     }
 
