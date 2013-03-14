@@ -51,12 +51,36 @@ var tinyPlayer = tinyPlayer || {};
     $("#playlist ul").append(newLi);
   });
 
-  tinyPlayer.updatePlayList = function() {
+  tinyPlayer.updatePlayList = function(plists) {
+    $("#playlist-ul").empty();
+    var allList = $("<li class='selected'>All</li>");
+    $("#playlist-ul").append(allList);
+    allList.click(function() {
+      drivePlayer.getAllMp3();
+    });
 
+    for (var i = 0; i < plists.length; i++) {
+      var plistLi = $("<li>");
+      plistLi.text(plists[i].title.substr(0, plists[i].title.indexOf("-plist")));
+      plistLi.attr("data-id", plists[i].id);
+      $("#playlist-ul").append(plistLi);
+      plistLi.click(function() {
+        if (plistLi.text() == "All") {
+          drivePlayer.getAllMp3();
+        }
+        else {
+          drivePlayer.getFilesFromList($(this).attr("data-id"));
+        }
+      });
+      var shareButton = $("<a></a>");
+      shareButton.text("share").addClass("share-btn").attr("href", "#");
+      plistLi.append(shareButton);
+    }
   };
 
   tinyPlayer.updateCurrentList = function(songs) {
     var listElement = $("#current-list-table");
+    listElement.empty();
 
     for (var i = 0; i < songs.length; i++) {
       var song = songs[i];
@@ -76,6 +100,7 @@ var tinyPlayer = tinyPlayer || {};
         var fileId = $(this).parent().attr("data-id");
         shareInput.blur(function() {
           console.log($(this).val());
+          $(this).parent().remove();
           $(this).remove();
         })
       });
@@ -91,6 +116,12 @@ var tinyPlayer = tinyPlayer || {};
 
     drivePlayer.playerInstance.importList(songs);
     drivePlayer.playerInstance.play();
+  });
+
+  $(document).on("play-list-updated", function(e, data) {
+    var plists = data.plists;
+    console.log(plists);
+    tinyPlayer.updatePlayList(plists);
   });
 
 })(jQuery);
