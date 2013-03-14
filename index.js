@@ -110,9 +110,10 @@ var tinyPlayer = tinyPlayer || {};
       songRow.click(function(index) {
         return function() {
           drivePlayer.playerInstance.play(index);
-          drivePlayer.refreshDancer();
-          drivePlayer.dancerInstance.play();
-          tinyPlayer.updateSongTitle();
+          drivePlayer.refreshUI();
+          //drivePlayer.refreshDancer();
+          //drivePlayer.dancerInstance.play();
+          //tinyPlayer.updateSongTitle();
           $('#toggleButton').removeClass('paused');
         }
       }(i));
