@@ -1,0 +1,69 @@
+
+body {
+    background: #e1e8e5;
+    font-size: 11px;
+}
+
+a {
+    text-align: center;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.btn {
+    display: block;
+    margin-bottom: 10px;
+    float: right;
+}
+
+.btn a {
+    display: inline-block;
+    zoom: 1;
+    width: 108px;
+    padding: 5px 0;
+    line-height: 1.2;
+    text-align: center;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.btn a:link, .btn a:visited {
+    color: #ca6445;
+    background: #fae9da;
+}
+
+#more-action a:hover {
+    background: #f4f4f4;
+    color: #369;
+}
+
+#more-action a {
+    display: block;
+    padding: 2px;
+    color: #37a;
+    background: #f8f8f8;
+}
+
+ul {
+    list-style: none;
+}
+
+#playlist li {
+    font-size: 13px;
+    width: 220px;
+    height: 38px;
+    line-height: 38px;
+    color: #333;
+    margin-bottom: 18px;
+    position: relative;
+    cursor: pointer;
+    zoom: 1;
+}
+
+#playlist li.selected {
+    background-color: #9dd6c5;
+}

@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="player.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!--<script src="popup.js"></script>-->
 </head>
 <body>
-    <div id="controlUI"> <div id="playIcon" class="controlIcon">Play</div> </div>
-    <div id="playlist">
-        <table>
-            <thead> <tr> <th>#</th> <th>Title</th> <th>Share</th> </tr> </thead>
-            <tbody> </tbody>
-        </table>
+    <div id="title">Tiny Player</div>
+    <div id="controlUI"> <div id="playIcon" class="controlIcon"></div> </div>
+
+    <div id="more-action">
+        <a href="#">More</a>
     </div>
+    <div id="more">
+        <div id="current-list"></div>
+        <div id="playlist">
+            <ul>
+                <li class=""></li>
+                <li class="selected">Pop</li>
+            </ul>
+        </div>
+        <div id="action">
+            <span class="btn"><a href="#">Create Playlist</a></span>
+        </div>
+    </div>
+
 </body>
 </html>
