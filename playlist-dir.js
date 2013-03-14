@@ -54,7 +54,7 @@ var drivePlayer = drivePlayer || {};
   drivePlayer.createList = function (name) {
     $.get("https://www.googleapis.com/drive/v2/files?access_token=" + drivePlayer.googleAuthInstance.getAccessToken(), function (data) {
       for (var i = 0, count = 1; i < data.items.length; ++i) {
-        if (data.items[i].title == "mp3") {
+        if (data.items[i].title == "tiny-player") {
           var postData = {
             "title":name + "-plist",
             "parents":[
