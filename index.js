@@ -57,6 +57,8 @@ var tinyPlayer = tinyPlayer || {};
     $("#playlist-ul").append(allList);
     allList.click(function() {
       drivePlayer.getAllMp3();
+      $("#playlist li").removeClass("selected");
+      $(this).addClass("selected");
     });
 
     for (var i = 0; i < plists.length; i++) {
@@ -65,12 +67,9 @@ var tinyPlayer = tinyPlayer || {};
       plistLi.attr("data-id", plists[i].id);
       $("#playlist-ul").append(plistLi);
       plistLi.click(function() {
-        if (plistLi.text() == "All") {
-          drivePlayer.getAllMp3();
-        }
-        else {
-          drivePlayer.getFilesFromList($(this).attr("data-id"));
-        }
+        drivePlayer.getFilesFromList($(this).attr("data-id"));
+        $("#playlist li").removeClass("selected");
+        $(this).addClass("selected");
       });
       var shareButton = $("<a></a>");
       shareButton.text("share").addClass("share-btn").attr("href", "#");
