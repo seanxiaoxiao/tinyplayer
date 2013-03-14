@@ -63,8 +63,12 @@ var tinyPlayer = tinyPlayer || {};
       songRow.attr("data-link", song.url);
       songRow.attr("data-id", song.id);
       songRow.text(song.title);
+      var shareButton = $("<a href='#' class='share-btn'>Share</a>");
+      songRow.append(shareButton);
       listElement.append(songRow);
     }
+    listElement.find("div").draggable();
+
   };
 
 

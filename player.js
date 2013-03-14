@@ -44,7 +44,6 @@ var allPlaylists;
     eventBinding : function(){
       var that = this;
       $('#current-list tbody').on('click', 'tr td:first', function(){
-        console.log("clicked");
         var fileLink = $(this).parent().attr('data-link');
         that.playerInstance.setSrc(fileLink);
         that.playerInstance.play();
@@ -54,6 +53,14 @@ var allPlaylists;
         that.playerInstance.toggle();
         $(this).toggleClass('paused');
       });
+
+      $('#prevButton').on('click', function(){
+        that.playerInstance.prev();
+      });
+      $('#nextButton').on('click', function(){
+        that.playerInstance.next();
+      });
+
     }
 
   };
