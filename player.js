@@ -9,8 +9,12 @@ var allSongs;
     initialize : function(){
       this.googleAuth();
       this.eventBinding();
-      this.getAllMp3();
-      $('#controlUI').append(this.playerInstance.audioElement);
+      if (drivePlayer.playerInstance.playList.length == 0) {
+        this.getAllMp3();
+      }
+      else {
+        tinyPlayer.updateCurrentList(drivePlayer.playerInstance.playList);
+      }
     },
 
     googleAuth : function(callback){
@@ -166,10 +170,16 @@ var allSongs;
 
     eventBinding : function(){
       var that = this;
-      $('#playlist tbody').on('click', 'tr td:first', function(){
+      $('#current-list tbody').on('click', 'tr td:first', function(){
+        console.log("clicked");
         var fileLink = $(this).parent().attr('data-link');
         that.playerInstance.setSrc(fileLink);
         that.playerInstance.play();
+      });
+
+      $('#toggleButton').on('click', function(){
+        that.playerInstance.toggle();
+        $(this).toggleClass('paused');
       });
     }
 

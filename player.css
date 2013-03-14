@@ -91,6 +91,27 @@ ul {
     background-color: #9dd6c5;
 }
 
+#controlUI {
+    background-color: #111;
+    color: #eee;
+    height: 60px;
+}
+
+#controlUI .cover-image{
+    background-color: #fff;
+    display: inline-block;
+    height: 60px; width: 60px;
+}
+
+#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; opacity: 0.2; background-image: url(img/play.png);}
+#controlUI #toggleButton.paused { background-image: url(img/pause.png); }
+#controlUI #toggleButton:hover { opacity: 0.6;}
+
+
+#current-list table tr td:first-child {
+    cursor: pointer;
+}
+
 #current-list {
     display: inline-block;
     max-width: 380px;
@@ -105,8 +126,4 @@ ul {
     display: inline-block;
     overflow-y: scroll;
     clear: both;
-}
-
-#controlUI audio {
-    width: 100%;
 }

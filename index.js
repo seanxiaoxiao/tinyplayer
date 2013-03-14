@@ -54,14 +54,8 @@ var tinyPlayer = tinyPlayer || {};
 
   };
 
-  tinyPlayer.updateCurrentList = function() {
-
-  };
-
-
-  $(document).on("current-list-updated", function(e, data) {
+  tinyPlayer.updateCurrentList = function(songs) {
     var tbodyElement = $("#current-list-table tbody");
-    var songs = data.songs;
 
     for (var i = 0; i < songs.length; i++) {
       var song = songs[i];
@@ -71,9 +65,17 @@ var tinyPlayer = tinyPlayer || {};
       var songCell = $("<td/>");
       songCell.text(song.title);
       songRow.append(songCell);
-      console.log("fdsfdsfdsf");
       tbodyElement.append(songRow);
     }
+  };
+
+
+  $(document).on("current-list-updated", function(e, data) {
+    var songs = data.songs;
+    tinyPlayer.updateCurrentList(songs);
+
+    drivePlayer.playerInstance.importList(songs);
+    drivePlayer.playerInstance.play();
   });
 
 })(jQuery);
