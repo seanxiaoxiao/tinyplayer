@@ -11,6 +11,7 @@ var drivePlayer = drivePlayer || {};
       this.googleAuth();
       this.eventBinding();
       this.initDancer();
+      tinyPlayer.updateSongTitle();
       if(this.playerInstance.audioElement.paused){ $('#toggleButton').addClass('paused'); }
       else { 
         $('#toggleButton').removeClass('paused');
@@ -88,6 +89,7 @@ var drivePlayer = drivePlayer || {};
         $(this).toggleClass('paused');
 
         that.refreshDancer();
+        tinyPlayer.updateSongTitle();
         if(that.dancerInstance.isPlaying()){ that.dancerInstance.pause(); }
         else { that.dancerInstance.play(); }
       });
@@ -96,12 +98,14 @@ var drivePlayer = drivePlayer || {};
         if(that.playerInstance.prev()){
           that.refreshDancer();
           that.dancerInstance.play();
+          tinyPlayer.updateSongTitle();
         }
       });
       $('#nextButton').on('click', function(){
         if(that.playerInstance.next()){
           that.refreshDancer();
           that.dancerInstance.play();
+          tinyPlayer.updateSongTitle();
         }
       });
 

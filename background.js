@@ -16,6 +16,7 @@ var playerInstance = playerInstance || {};
 			 	that.next();
 			 	chrome.extension.getViews({type:'popup'})[0].drivePlayer.refreshDancer();
 			 	chrome.extension.getViews({type:'popup'})[0].drivePlayer.dancerInstance.play();
+			 	chrome.extension.getViews({type:'popup'})[0].tinyPlayer.updateSongTitle();
 			});
 		},
 		setSrc : function(src){
