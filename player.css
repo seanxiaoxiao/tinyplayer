@@ -113,19 +113,28 @@ ul {
     cursor: pointer;
 }
 
+#current-list {
+    height: 300px;
+}
+
 #left {
     display: inline-block;
     width: 380px;
-    height: 400px;
+    max-height: 400px;
     overflow-y: scroll;
 }
 
 #right {
     max-width: 240px;
-    margin-left: 20px;
-    height: 400px;
+    margin-left: 25px;
+    max-height: 400px;
     display: inline-block;
-    overflow-y: scroll;
-
 }
+
+#playlist-ul {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+
 

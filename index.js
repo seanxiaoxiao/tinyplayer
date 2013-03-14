@@ -55,17 +55,15 @@ var tinyPlayer = tinyPlayer || {};
   };
 
   tinyPlayer.updateCurrentList = function(songs) {
-    var tbodyElement = $("#current-list-table tbody");
+    var listElement = $("#current-list-table");
 
     for (var i = 0; i < songs.length; i++) {
       var song = songs[i];
-      var songRow = $("<tr/>");
+      var songRow = $("<div/>");
       songRow.attr("data-link", song.url);
       songRow.attr("data-id", song.id);
-      var songCell = $("<td/>");
-      songCell.text(song.title);
-      songRow.append(songCell);
-      tbodyElement.append(songRow);
+      songRow.text(song.title);
+      listElement.append(songRow);
     }
   };
 
