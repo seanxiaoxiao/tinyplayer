@@ -16,7 +16,7 @@ var playerInstance = playerInstance || {};
 			this.audioElement.setAttribute('src', src);
 			this.audioElement.load();
 		},
-		play : function(){ this.audioElement.play(); },
+		play : function(){ this.audioElement.play(); console.log("fdsfdss")},
 		pause : function(){	this.audioElement.pause(); },
 		toggle : function(){
 			if(this.audioElement.paused) { this.audioElement.play(); }
