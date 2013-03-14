@@ -9,6 +9,8 @@ var drivePlayer = drivePlayer || {};
       this.googleAuth();
       this.eventBinding();
       this.createPlaylist();
+      console.log(this.playerInstance.audioElement);
+      $('#controlUI').append(this.playerInstance.audioElement);
     },
     googleAuth : function(callback){
       this.googleAuthInstance = new OAuth2('google', {
@@ -53,7 +55,7 @@ var drivePlayer = drivePlayer || {};
         }
       });
 
-      var data = {
+      /*var data = {
         'type': 'user',
         'role': 'reader',
         'value': 'sean.xiao@west.cmu.edu'
@@ -65,7 +67,7 @@ var drivePlayer = drivePlayer || {};
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         error: function(data){console.log(data); }
-      });
+      });*/
 
     },
 
