@@ -16,9 +16,10 @@ var playerInstance = playerInstance || {};
 			this.audioElement.addEventListener('ended', function(e){
 			 	that.next();
 			 	var popupView = chrome.extension.getViews({type:'popup'})[0];
-			 	popupView.drivePlayer.refreshDancer();
-			 	popupView.drivePlayer.dancerInstance.play();
-			 	popupView.tinyPlayer.updateSongTitle();
+			 	popupView.refreshUI();
+			 	//popupView.drivePlayer.refreshDancer();
+			 	//popupView.drivePlayer.dancerInstance.play();
+			 	//popupView.tinyPlayer.updateSongTitle();
 			});
 		},
 		setSrc : function(src){
