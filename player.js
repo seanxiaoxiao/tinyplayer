@@ -43,7 +43,6 @@ var allSongs;
     eventBinding : function(){
       var that = this;
       $('#current-list tbody').on('click', 'tr td:first', function(){
-        console.log("clicked");
         var fileLink = $(this).parent().attr('data-link');
         that.playerInstance.setSrc(fileLink);
         that.playerInstance.play();
