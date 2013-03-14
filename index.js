@@ -77,7 +77,7 @@ var tinyPlayer = tinyPlayer || {};
     tinyPlayer.updateCurrentList(songs);
 
     drivePlayer.playerInstance.importList(songs);
-    drivePlayer.playerInstance.play();
+    //drivePlayer.playerInstance.play();
   });
 
 })(jQuery);

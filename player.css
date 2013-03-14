@@ -105,6 +105,8 @@ ul {
     height: 60px; width: 60px;
 }
 
+#controlUI #fft { width: 500px; height: 60px; left: 100px; top: 0; position: absolute;}
+
 #controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; background-image: url(img/play.png);}
 #controlUI #toggleButton.paused { background-image: url(img/pause.png); }
 
@@ -119,6 +121,8 @@ ul {
 
 .controlButton {  opacity: 0.2; cursor: pointer;}
 .controlButton:hover {  opacity: 0.6; }
+
+
 
 
 #current-list table tr td:first-child {
