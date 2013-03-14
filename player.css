@@ -2,7 +2,7 @@ body {
     background: #e1e8e5;
     font-size: 11px;
     font-family: "Open Sans";
-    width: 220px;
+    width: 650px;
 }
 
 a {
@@ -32,6 +32,7 @@ a:link {
     border-radius: 2px;
 }
 
+
 .btn a:link, .btn a:visited {
     color: #ca6445;
     background: #fae9da;
@@ -50,7 +51,6 @@ a:link {
 }
 
 #playlist {
-    height: 150px;
     overflow: scroll;
 }
 
@@ -59,8 +59,18 @@ ul {
     -webkit-padding-start: 0px;
 }
 
-#playlist li.hover {
+#playlist li:hover {
     background: rgba(150,171,165,0.5);
+}
+
+#playlist li .share-btn {
+    display: none;
+}
+
+#playlist li:hover .share-btn {
+    display: block;
+    float: right;
+    margin-right: 10px;
 }
 
 #playlist li {
@@ -79,4 +89,24 @@ ul {
 
 #playlist li.selected {
     background-color: #9dd6c5;
+}
+
+#current-list {
+    display: inline-block;
+    max-width: 380px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#playlist {
+    max-width: 240px;
+    margin-left: 20px;
+    height: 400px;
+    display: inline-block;
+    overflow-y: scroll;
+    clear: both;
+}
+
+#controlUI audio {
+    width: 100%;
 }

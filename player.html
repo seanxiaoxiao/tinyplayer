@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="title"><h2>Tiny Player</h2></div>
-    <div id="controlUI"> <div id="playIcon" class="controlIcon"></div> </div>
+    <div id="controlUI"> </div>
 
     <div id="more-action">
         <a href="#">More</a>
@@ -19,26 +19,34 @@
     <div id="more" style="display:none;">
         <div id="current-list">
             <table>
-                <thead> <tr> <th>#</th> <th>Title</th> <th>Share</th> </tr> </thead>
-                <tbody> </tbody>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
             </table>
         </div>
         <div id="playlist">
-            <ul>
-                <li class="playlist-li">Traditional music</li>
-                <li class="playlist-li">Traditional music</li>
-                <li class="playlist-li">Traditional music</li>
-                <li class="playlist-li">Traditional music</li>
-                <li class="playlist-li">Traditional music</li>
-
-                <li class="playlist-li">Traditional music</li>
-                <li class="playlist-li">Popular music</li>
-                <li class="playlist-li">Art music</li>
+            <p>
+                Play lists
+            </p>
+            <ul id="playlist-ul">
                 <li class="selected">All</li>
+                <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+                <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+                <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+                <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+                <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+
+                <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+                <li>Popular music <a href="#" class="share-btn">Share</a></li>
+                <li>Art music <a href="#" class="share-btn">Share</a></li>
             </ul>
         </div>
         <div id="action">
-            <span class="btn"><a href="#">New Playlist</a></span>
+            <span class="btn"><a href="#" id="new-list">New Playlist</a></span>
         </div>
     </div>
     <script src="index.js"></script>
