@@ -18,6 +18,7 @@
       "run_at": "document_start"
     }
   ],
+  "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCseWxcVUdgNesGSNdbBwRFVBzKUeFsiKbnyoOs0oDg/AoUXOuQJS7UUZtzlqrGbqsfGvtRyzR9Klrh8QKMMs5sTtp5CXOIS7sMG+NSRvLFuVo8E6E5j2pZAd4Osc0KjpX/OVeIBV8S6E8aKR+CjRszqCZNgIJ91kTPzrEt/nhSDwIDAQAB",
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' https://apis.google.com https://ajax.googleapis.com; object-src 'self'"
 }

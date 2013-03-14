@@ -1,7 +1,7 @@
-
 body {
     background: #e1e8e5;
     font-size: 11px;
+    font-family: "Open Sans";
 }
 
 a {
@@ -48,19 +48,31 @@ a:link {
     background: #f8f8f8;
 }
 
+#playlist {
+    height: 150px;
+    overflow: scroll;
+}
+
 ul {
     list-style: none;
+    -webkit-padding-start: 0px;
+}
+
+#playlist li.hover {
+    background: rgba(150,171,165,0.5);
 }
 
 #playlist li {
-    font-size: 13px;
+    font-size: 11px;
     width: 220px;
-    height: 38px;
-    line-height: 38px;
+    height: 28px;
+    line-height: 28px;
     color: #333;
-    margin-bottom: 18px;
+    background: rgba(198,211,205,0.5);
+    margin-bottom: 5px;
     position: relative;
     cursor: pointer;
+    text-indent: 5px;
     zoom: 1;
 }
 
