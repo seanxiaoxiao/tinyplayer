@@ -1,5 +1,6 @@
 var playlist = playlist || {};
 var playlistHash;
+var allPlaylists;
 
 (function () {
 
@@ -79,73 +80,77 @@ var playlistHash;
         addSongToPlaylist:function (playlistId, song) {
             song.playlistId = playlistId;
             song.playlist = playlistHash[song.playlistId].name
-            console.log("song " + song + " added to playlist " + song.playlist )
+            console.log("song " + song + " added to playlist " + song.playlist)
         },
 
-        addNewPlaylist:function(playlistName){
+        addNewPlaylist:function (playlistName) {
             playlist = new Object();
             playlist.id = 0;
             playlist.name = playlistName;
             playlist.songs = new Object();
 
             playlistHash[playlist.id] = playlist;
-        },
+        }}})();
 
-
-        getPlaylists:function () {
-            var playlists = [];
-
-            //https://docs.google.com/folder/d/0B0HMC2KvkVnkbFZFRXNYLXpOVXM/edit?usp=sharing
-//                +"&mimeType='audio/mpeg'"
-            var folder_id = "0B0HMC2KvkVnkb2FTT28yWlFGWVk";
-
-            $.get("https://www.googleapis.com/drive/v2/files/" + folder_id + "/children?access_token=" + drivePlayer.googleAuthInstance.getAccessToken(), function (data) {
-
-                for (var i = 0, count = 1; i < data.items.length; ++i) {
-
-                    playlist = new Object();
-                    playlist.id = data.items[i].id;
-                }
-
-                playlists.push(playlist);
-
-                var text = JSON.stringify(playlists);
-                console.log(text);
-            });
-
-        },
-
-        uploadPlaylist:function (playlistName, data) {
-            //First, POST the new file metadata to the Drive endpoint.
-            //The response body will be a JSON representation of the newly created File resource.
-
-            var boundary = '-------314159265358979323846';
-            var body = '--' + boundary + '\r\n'
-                // Parameter name is "file" and local filename is "temp.txt"
-                + 'Content-Disposition: form-data; name="file";'
-                + 'title=playlistName\r\n'
-                // Add the file's mime-type
-                + 'Content-type: plain/text\r\n\r\n'
-                // Add your data:
-                + data + '\r\n'
-                + boundary + '--';
-
-            $.ajax({
-                contentType:"multipart",
-                data:body,
-                type:"POST",
-                dataType:"json",
-                url:"https://www.googleapis.com/upload/drive/v2/files?access_token=" + drivePlayer.googleAuthInstance.getAccessToken() +
-                    "&uploadType=multipart",
-
-                success:function (data, status) {
-                    console.log("success");
-                },
-
-                error:function () {
-                    console.log('Failed!');
-                }
-            })
-        }
-    }
-})();
+//        getPlaylists:function () {
+//            var playlists = [];
+//
+//            //https://docs.google.com/folder/d/0B0HMC2KvkVnkbFZFRXNYLXpOVXM/edit?usp=sharing
+////                +"&mimeType='audio/mpeg'"
+//            var folder_id = "0B0HMC2KvkVnkb2FTT28yWlFGWVk";
+//
+//            $.get("https://www.googleapis.com/drive/v2/files/" + folder_id + "/children?access_token=" + drivePlayer.googleAuthInstance.getAccessToken(), function (data) {
+//
+//                for (var i = 0, count = 1; i < data.items.length; ++i) {
+//
+//                    playlist = new Object();
+//                    playlist.id = data.items[i].id;
+//                }
+//
+//                playlists.push(playlist);
+//
+//                var text = JSON.stringify(playlists);
+//                console.log(text);
+//            });
+//
+//        },
+//
+//        uploadPlaylist:function (playlistName, data) {
+//            //First, POST the new file metadata to the Drive endpoint.
+//            //The response body will be a JSON representation of the newly created File resource.
+//
+//            var boundary = '-------314159265358979323846';
+//            var body = '--' + boundary + '\r\n'
+//                // Parameter name is "file" and local filename is "temp.txt"
+//                + 'Content-Disposition: form-data; name="file";'
+//                + 'title=playlistName\r\n'
+//                // Add the file's mime-type
+//                + 'Content-type: plain/text\r\n\r\n'
+//                // Add your data:
+//                + data + '\r\n'
+//                + boundary + '--';
+//
+//            $.ajax({
+//                contentType:"multipart",
+//                data:body,
+//                type:"POST",
+//                dataType:"json",
+//                url:"https://www.googleapis.com/upload/drive/v2/files?access_token=" + drivePlayer.googleAuthInstance.getAccessToken() +
+//                    "&uploadType=multipart",
+//
+//                success:function (data, status) {
+//                    console.log("success");
+//                },
+//
+//                error:function () {
+//                    console.log('Failed!');
+//                }
+//            })
+//        },
+//
+//        getPlaylists:function () {
+//            q = "title contains playlist";
+//            $.get("https://www.googleapis.com/drive/v2/files?access_token=" + drivePlayer.googleAuthInstance.getAccessToken() + "&q=" + q, function (data) {
+//                console.log(data);
+//            });
+//        };

@@ -23,9 +23,7 @@ var tinyPlayer = tinyPlayer || {};
   $("#playlist li").click(function() {
     $("#playlist li").removeClass("selected");
     $(this).addClass("selected");
-
   });
-
 
   $("#new-list").click(function() {
     if ($(".new-list").length > 0) {
@@ -33,6 +31,7 @@ var tinyPlayer = tinyPlayer || {};
     }
     var newLi = $("<li class='new-list'/>");
     var input = $("<input type='text'>");
+
     $("#playlist").animate({ scrollTop: $("#playlist-ul").height() }, "slow");
 
     newLi.append(input);
@@ -42,8 +41,11 @@ var tinyPlayer = tinyPlayer || {};
       }
       else {
         newLi.removeClass("new-list");
+        var shareBtn = $("<a href='#' class='share-btn'>Share</a>");
         newLi.text(input.val());
+        newLi.append(shareBtn);
         input.remove();
+        drivePlayer.createList(input.val());
       }
     });
     $("#playlist ul").append(newLi);
@@ -53,10 +55,43 @@ var tinyPlayer = tinyPlayer || {};
 
   };
 
-  tinyPlayer.updateCurrentList = function() {
+  tinyPlayer.updateCurrentList = function(songs) {
+    var listElement = $("#current-list-table");
+
+    for (var i = 0; i < songs.length; i++) {
+      var song = songs[i];
+      var songRow = $("<div/>");
+      songRow.attr("data-link", song.url);
+      songRow.attr("data-id", song.id);
+      songRow.text(song.title);
+      var shareButton = $("<a href='#' class='share-btn'>Share</a>");
+      songRow.append(shareButton);
+      listElement.append(songRow);
+
+      shareButton.click(function() {
+        var shareBox = $("<div></div>");
+        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
+        shareBox.append(shareInput);
+        shareBox.insertAfter($(this).parent());
+        var fileId = $(this).parent().attr("data-id");
+        shareInput.blur(function() {
+          var userVal = $(this).val();
+          sharing.shareFile(fileId, userVal);
+          $(this).remove();
+        })
+      });
+    }
+    listElement.find("div").draggable();
 
   };
 
 
+  $(document).on("current-list-updated", function(e, data) {
+    var songs = data.songs;
+    tinyPlayer.updateCurrentList(songs);
+
+    drivePlayer.playerInstance.importList(songs);
+    drivePlayer.playerInstance.play();
+  });
 
 })(jQuery);

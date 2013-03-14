@@ -2,7 +2,8 @@ body {
     background: #e1e8e5;
     font-size: 11px;
     font-family: "Open Sans";
-    width: 650px;
+    width: 640px;
+    padding: 10px;
 }
 
 a {
@@ -63,14 +64,16 @@ ul {
     background: rgba(150,171,165,0.5);
 }
 
-#playlist li .share-btn {
+#current-list-table .share-btn, #playlist li .share-btn {
     display: none;
+
 }
 
-#playlist li:hover .share-btn {
+#current-list-table div:hover .share-btn, #playlist li:hover .share-btn {
     display: block;
     float: right;
     margin-right: 10px;
+    color: #ca6445;
 }
 
 #playlist li {
@@ -92,6 +95,7 @@ ul {
 }
 
 #controlUI {
+    position: relative;
     background-color: #111;
     color: #eee;
     height: 60px;
@@ -103,27 +107,57 @@ ul {
     height: 60px; width: 60px;
 }
 
-#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; opacity: 0.2; background-image: url(img/play.png);}
+#controlUI #toggleButton { height: 100%; width: 100%; cursor: pointer; background-image: url(img/play.png);}
 #controlUI #toggleButton.paused { background-image: url(img/pause.png); }
-#controlUI #toggleButton:hover { opacity: 0.6;}
+
+#prevButton {
+    position: absolute;
+    height: 30px; width: 30px; left: 70px; top: 15px;
+}
+#nextButton { 
+    position: absolute;
+    height: 30px; width: 30px; right: 10px; top: 15px;
+}
+
+.controlButton {  opacity: 0.2; cursor: pointer;}
+.controlButton:hover {  opacity: 0.6; }
 
 
 #current-list table tr td:first-child {
     cursor: pointer;
 }
 
-#current-list {
-    display: inline-block;
-    max-width: 380px;
-    height: 400px;
+#current-list-table {
+    height: 300px;
     overflow-y: scroll;
 }
 
-#playlist {
-    max-width: 240px;
-    margin-left: 20px;
-    height: 400px;
-    display: inline-block;
-    overflow-y: scroll;
-    clear: both;
+#current-list-table div {
+    padding: 3px 3px;
+    color: #37a;
+    cursor: pointer;
+    font-size: 12px;
 }
+
+#left {
+    display: block;
+    width: 380px;
+    max-height: 400px;
+    float: left;
+}
+
+#right {
+    width: 220px;
+    margin-left: 25px;
+    max-height: 400px;
+    display: block;
+    float: left;
+}
+
+#playlist-ul {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+
+

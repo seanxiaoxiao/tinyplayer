@@ -8,9 +8,13 @@ var playerInstance = playerInstance || {};
 		//notificationElement : {},
 
 		initialize : function(){
+			var that = this;
 			this.audioElement.setAttribute('src', '');
 			this.audioElement.setAttribute('controls', '');
 			this.audioElement.setAttribute('type', 'audio/mpeg');
+			this.audioElement.addEventListener('ended', function(e){
+			 	that.next();
+			});
 		},
 		setSrc : function(src){
 			this.audioElement.setAttribute('src', src);
@@ -23,6 +27,7 @@ var playerInstance = playerInstance || {};
 			else { this.audioElement.pause(); }
 		},
 		next : function(){
+			if(this.currentPlay === this.playList.length-1){ return false; }
 			this.setSrc(this.playList[++this.currentPlay].url);
 			this.play();
 		},
