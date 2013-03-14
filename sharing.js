@@ -36,12 +36,44 @@ var sharing = sharing || {};
         },
 
         /**
+         * Start the playlist sharing.
+         *
+         * @param {string} playlistId the ID of the playlist to share.
+         */
+        sharePlaylist : function (playlistId) {
+            var playList;
+
+            // Get the playlist by ID
+            for (var i = 0; i < allPlaylists.length && !playList; i++) {
+                if (allPlaylists[i].id === playlistId)
+                    playlist = allPlaylists[i];
+            }
+            
+            // Get the songs in the playlist
+            var songs = playlist.songs;
+
+            // Share each song
+            for (var i = 0; i < songs.length; i++) {
+                shareFile(songs[i].id);
+            }
+        },
+
+        /**
          * Event handler for file sharing.
          *
          * @param {Object} evt Arguments from the share button.
          */
-        shareHandler : function (evt) {
+        shareFileHandler : function (evt) {
             sharing.shareFile(evt.target.id);
+        },
+
+        /**
+         * Event handler for playlist sharing.
+         *
+         * @param {Object} evt Arguments from the share button.
+         */
+        sharePlaylistHandler : function (evt) {
+            sharing.sharePlaylist(evt.target.id);
         }
     }
 })();

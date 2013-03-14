@@ -1,4 +1,5 @@
 var playlist = playlist || {};
+var allPlaylists;
 
 (function () {
 
@@ -9,8 +10,7 @@ var playlist = playlist || {};
             console.log(data);
 
         });
-    }
-    ,
+    },
 
     uploadPlaylist:function (playlistName, data) {
         var boundary = '-------314159265358979323846';
