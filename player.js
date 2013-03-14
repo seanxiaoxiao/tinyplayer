@@ -1,7 +1,7 @@
 var drivePlayer = drivePlayer || {};
-var allSongs;
 
 (function(){
+
   drivePlayer = {
     playerInstance : chrome.extension.getBackgroundPage().playerInstance,
     dancerInstance : new Dancer(),
@@ -38,7 +38,6 @@ var allSongs;
           }
         }
         $(document).trigger("current-list-updated", {songs: songs});
-
       });
     },
 
@@ -103,23 +102,13 @@ var allSongs;
         }
       });
 
-    }
 
+    }
   };
 })();
 
 
 $(document).ready(function(){
-  drivePlayer.initialize();
+    drivePlayer.initialize();
 });
-
-/**
- * Event handler for file sharing.
- *
- * @param {Object} evt Arguments from the share button.
- */
-function shareHandler(evt){
-  drivePlayer.shareFile(evt.target.id);
-}
-
 

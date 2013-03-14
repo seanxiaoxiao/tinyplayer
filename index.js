@@ -45,17 +45,55 @@ var tinyPlayer = tinyPlayer || {};
         newLi.text(input.val());
         newLi.append(shareBtn);
         input.remove();
+        drivePlayer.createList(input.val());
       }
     });
     $("#playlist ul").append(newLi);
   });
 
-  tinyPlayer.updatePlayList = function() {
+  tinyPlayer.updatePlayList = function(plists) {
+    $("#playlist-ul").empty();
+    var allList = $("<li class='selected'>All</li>");
+    $("#playlist-ul").append(allList);
+    allList.click(function() {
+      drivePlayer.getAllMp3();
+    });
 
+    for (var i = 0; i < plists.length; i++) {
+      var plistLi = $("<li>");
+      plistLi.text(plists[i].title.substr(0, plists[i].title.indexOf("-plist")));
+      plistLi.attr("data-id", plists[i].id);
+      $("#playlist-ul").append(plistLi);
+      plistLi.click(function() {
+        if (plistLi.text() == "All") {
+          drivePlayer.getAllMp3();
+        }
+        else {
+          drivePlayer.getFilesFromList($(this).attr("data-id"));
+        }
+      });
+      var shareButton = $("<a></a>");
+      shareButton.text("share").addClass("share-btn").attr("href", "#");
+      shareButton.click(function() {
+        var shareBox = $("<li></li>");
+        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
+        shareBox.append(shareInput);
+        shareBox.insertAfter($(this).parent());
+        var fileId = $(this).parent().attr("data-id");
+        shareInput.blur(function() {
+          $(this).parent().remove();
+          var userVal = $(this).val();
+          sharing.shareFile(fileId, userVal);
+          $(this).remove();
+        })
+      });
+      plistLi.append(shareButton);
+    }
   };
 
   tinyPlayer.updateCurrentList = function(songs) {
     var listElement = $("#current-list-table");
+    listElement.empty();
 
     for (var i = 0; i < songs.length; i++) {
       var song = songs[i];
@@ -66,6 +104,20 @@ var tinyPlayer = tinyPlayer || {};
       var shareButton = $("<a href='#' class='share-btn'>Share</a>");
       songRow.append(shareButton);
       listElement.append(songRow);
+
+      shareButton.click(function() {
+        var shareBox = $("<div></div>");
+        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
+        shareBox.append(shareInput);
+        shareBox.insertAfter($(this).parent());
+        var fileId = $(this).parent().attr("data-id");
+        shareInput.blur(function() {
+          $(this).parent().remove();
+          var userVal = $(this).val();
+          sharing.shareFile(fileId, userVal);
+          $(this).remove();
+        })
+      });
     }
     listElement.find("div").draggable();
 
@@ -78,6 +130,12 @@ var tinyPlayer = tinyPlayer || {};
 
     drivePlayer.playerInstance.importList(songs);
     //drivePlayer.playerInstance.play();
+  });
+
+  $(document).on("play-list-updated", function(e, data) {
+    var plists = data.plists;
+    console.log(plists);
+    tinyPlayer.updatePlayList(plists);
   });
 
 })(jQuery);
