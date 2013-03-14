@@ -1,4 +1,4 @@
 tinyplayer
 ==========
 
-Google IO Hackthon
+Google Drive Hackthon
