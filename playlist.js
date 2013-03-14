@@ -5,7 +5,7 @@ var playlist = playlist || {};
     playlist = {
     getPlaylists:function() {
         q = "title contains playlist";
-        $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken() + "&q=" + q, function (data) {
+        $.get("https://www.googleapis.com/drive/v2/files?access_token=" + drivePlayer.googleAuthInstance.getAccessToken() + "&q=" + q, function (data) {
             console.log(data);
 
         });
