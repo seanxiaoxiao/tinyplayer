@@ -5,10 +5,10 @@
     <link href="http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="player.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="./oauth2/oauth2.js"></script>
-    <script src="player.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+
+    <script src="https://apis.google.com/js/client.js?onload=oauth"></script>
     <link href="player.css" rel="stylesheet">
-    <!--<script src="popup.js"></script>-->
 </head>
 <body>
     <div id="title"><h2>Tiny Player</h2></div>
@@ -17,19 +17,19 @@
     <div id="more-action">
         <a href="#">More</a>
     </div>
-    <div id="more">
+    <div id="more" style="display:none;">
         <div id="current-list"></div>
         <div id="playlist">
             <ul>
-                <li class="">Traditional music</li>
-                <li class="">Traditional music</li>
-                <li class="">Traditional music</li>
-                <li class="">Traditional music</li>
-                <li class="">Traditional music</li>
+                <li class="playlist-li">Traditional music</li>
+                <li class="playlist-li">Traditional music</li>
+                <li class="playlist-li">Traditional music</li>
+                <li class="playlist-li">Traditional music</li>
+                <li class="playlist-li">Traditional music</li>
 
-                <li class="">Traditional music</li>
-                <li class="">Popular music</li>
-                <li class="">Art music</li>
+                <li class="playlist-li">Traditional music</li>
+                <li class="playlist-li">Popular music</li>
+                <li class="playlist-li">Art music</li>
                 <li class="selected">All</li>
             </ul>
         </div>
@@ -37,6 +37,7 @@
             <span class="btn"><a href="#">New Playlist</a></span>
         </div>
     </div>
+    <script src="index.js"></script>
 
 </body>
 </html>

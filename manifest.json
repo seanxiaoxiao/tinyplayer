@@ -1,9 +1,11 @@
 {
   "name": "Tiny Player",
-  "version": "1",
-  "description": "Google Drive Music Player",
+  "version": "0.3",
+  "description": "tiny Player",
   "permissions": [
     "notifications",
+    "tabs",
+    "https://www.google.com/",
     "https://accounts.google.com/o/oauth2/token"
   ],
   "browser_action": {
@@ -11,6 +13,7 @@
     "default_icon": "icon.png",
     "default_popup": "player.html"
   },
+  "background": { "scripts": ["background.js"] },
   "content_scripts": [
     {
       "matches": ["http://www.google.com/robots.txt*"],
