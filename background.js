@@ -14,9 +14,10 @@ var playerInstance = playerInstance || {};
 			this.audioElement.setAttribute('type', 'audio/mpeg');
 			this.audioElement.addEventListener('ended', function(e){
 			 	that.next();
-			 	chrome.extension.getViews({type:'popup'})[0].drivePlayer.refreshDancer();
-			 	chrome.extension.getViews({type:'popup'})[0].drivePlayer.dancerInstance.play();
-			 	chrome.extension.getViews({type:'popup'})[0].tinyPlayer.updateSongTitle();
+			 	var popupView = chrome.extension.getViews({type:'popup'})[0];
+			 	popupView.drivePlayer.refreshDancer();
+			 	popupView.drivePlayer.dancerInstance.play();
+			 	popupView.tinyPlayer.updateSongTitle();
 			});
 		},
 		setSrc : function(src){

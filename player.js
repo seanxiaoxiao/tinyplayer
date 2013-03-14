@@ -11,12 +11,13 @@ var drivePlayer = drivePlayer || {};
       this.googleAuth();
       this.eventBinding();
       this.initDancer();
-      tinyPlayer.updateSongTitle();
+      //tinyPlayer.updateSongTitle();
       if(this.playerInstance.audioElement.paused){ $('#toggleButton').addClass('paused'); }
       else { 
         $('#toggleButton').removeClass('paused');
-        this.refreshDancer();
-        this.dancerInstance.play();
+        this.refreshUI();
+        //this.refreshDancer();
+        //this.dancerInstance.play();
         //this.dancerInstance.audioAdapter.audio.currentTime = this.playerInstance.audioElement.currentTime;
       }
       if (drivePlayer.playerInstance.playList.length == 0) {
@@ -76,13 +77,30 @@ var drivePlayer = drivePlayer || {};
       this.dancerInstance.setVolume(0);
     },
 
+    refreshUI : function(){
+      this.refreshDancer();
+      this.dancerInstance.play();
+      tinyPlayer.updateSongTitle();
+      /*$.get('http://ws.audioscrobbler.com/2.0/?method=track.getInfo&format=json',
+        {
+          api_key : '9bf923f841ec4a5ff44912c2d7980bc8',
+          artist : 'Muse',
+          track : 'New Born'
+        },
+        function(data){
+          console.log(data);
+        }
+      );*/
+
+    },
+
     eventBinding : function(){
       var that = this;
-      $('#current-list tbody').on('click', 'tr td:first', function(){
+      /*$('#current-list tbody').on('click', 'tr td:first', function(){
         var fileLink = $(this).parent().attr('data-link');
         that.playerInstance.setSrc(fileLink);
         that.playerInstance.play();
-      });
+      });*/
 
       $('#toggleButton').on('click', function(){
         that.playerInstance.toggle();
@@ -96,16 +114,16 @@ var drivePlayer = drivePlayer || {};
 
       $('#prevButton').on('click', function(){
         if(that.playerInstance.prev()){
-          that.refreshDancer();
-          that.dancerInstance.play();
-          tinyPlayer.updateSongTitle();
+          that.refreshUI();
+          //that.dancerInstance.play();
+          //tinyPlayer.updateSongTitle();
         }
       });
       $('#nextButton').on('click', function(){
         if(that.playerInstance.next()){
-          that.refreshDancer();
-          that.dancerInstance.play();
-          tinyPlayer.updateSongTitle();
+          that.refreshUI();
+          //that.dancerInstance.play();
+          //tinyPlayer.updateSongTitle();
         }
       });
 
