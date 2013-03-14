@@ -68,7 +68,6 @@ var allSongs;
           }
 
           allSongs = songs;
-          console.log(allSongs);
       });
 
       /*var data = {
@@ -105,11 +104,4 @@ $(document).ready(function(){
 });
 
 
-/* Information Backup
-var CLIENT_ID = '359878478762.apps.googleusercontent.com';
-var SCOPES = [
-  'https://www.googleapis.com/auth/drive',
-  'https://www.googleapis.com/auth/userinfo.email',
-  'https://www.googleapis.com/auth/userinfo.profile'
-];
-*/
+

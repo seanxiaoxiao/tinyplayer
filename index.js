@@ -16,16 +16,37 @@ var tinyPlayer = tinyPlayer || {};
     $("#more").fadeIn("slow");
   });
 
-  $("#playlist li").mouseover(function() {
-    $(this).addClass("hover");
+  $("#playlist li a").click(function(e) {
+    e.stopPropagation();
   });
 
-  $("#playlist li").mouseout(function() {
-    $(this).removeClass("hover");
+  $("#playlist li").click(function() {
+    $("#playlist li").removeClass("selected");
+    $(this).addClass("selected");
+
   });
 
-  $("#playlist li a").click(function() {
-    console.log("clicked");
+
+  $("#new-list").click(function() {
+    if ($(".new-list").length > 0) {
+      return;
+    }
+    var newLi = $("<li class='new-list'/>");
+    var input = $("<input type='text'>");
+    $("#playlist").animate({ scrollTop: $("#playlist-ul").height() }, "slow");
+
+    newLi.append(input);
+    input.blur(function() {
+      if (input.val() == "") {
+        newLi.remove();
+      }
+      else {
+        newLi.removeClass("new-list");
+        newLi.text(input.val());
+        input.remove();
+      }
+    });
+    $("#playlist ul").append(newLi);
   });
 
   tinyPlayer.updatePlayList = function() {
@@ -35,5 +56,7 @@ var tinyPlayer = tinyPlayer || {};
   tinyPlayer.updateCurrentList = function() {
 
   };
+
+
 
 })(jQuery);
