@@ -11,7 +11,7 @@ var allSongs;
             this.googleAuth();
             this.eventBinding();
             this.createPlaylist();
-            this.getPlaylists();
+            playlist.getPlaylists();
             $('#controlUI').append(this.playerInstance.audioElement);
         },
 
@@ -65,64 +65,6 @@ var allSongs;
 
                 uploadFunc("newplaylist", JSON.stringify(allSongs));
             });
-        },
-
-        /**
-         * Start the file sharing.
-         *
-         * @param {string} fileId the ID of the file to share.
-         */
-        shareFile:function (fileId) {
-
-            var data = {
-                'type':'user',
-                'role':'reader',
-                'value':'aristide.niyungeko@gmail.com'
-            };
-
-            $.ajax({
-                type:"POST",
-                url:"https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions?access_token=" + this.googleAuthInstance.getAccessToken(),
-                type:"POST",
-                data:JSON.stringify(data),
-                contentType:"application/json; charset=utf-8",
-                dataType:"json",
-                success:function (msg) {
-                    console.log(msg)
-                },
-                error:function (errormessage) {
-
-                    console.log(errormessage)
-
-                }
-            });
-        },
-
-        /**
-         * Insert a new permission.
-         *
-         * @param {String} fileId ID of the file to insert permission for.
-         * @param {String} value User or group e-mail address, domain name or
-         *                       {@code null} "default" type.
-         * @param {String} type The value "user", "group", "domain" or "default".
-         * @param {String} role The value "owner", "writer" or "reader".
-         */
-        insertPermission:function (fileId, type, role, callback) {
-            var body = {
-                'value':value,
-                'type':type,
-                'role':role
-            };
-            var request = gapi.client.drive.permissions.insert({
-                'fileId':fileId,
-                'resource':body
-            });
-            if (!callback) {
-                callback = function (resp) {
-                    console.log(resp)
-                };
-            }
-            request.execute(callback);
         },
 
         eventBinding:function () {
