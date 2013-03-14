@@ -43,7 +43,7 @@ var allSongs;
     createPlaylist : function(){
       $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
           console.log(data);
-          var playlistContainer = $("#playlist tbody");
+          var playlistContainer = $("#current-list tbody");
         // iterate and find the mp3 files
           var songs = [];
           // iterate and find the mp3 files
