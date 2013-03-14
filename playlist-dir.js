@@ -10,6 +10,30 @@
 var drivePlayer = drivePlayer || {};
 
 (function ($) {
+
+  drivePlayer.copyFileToDir = function(fileId, dirId) {
+    var data = {
+      'id': dirId
+    };
+
+    $.ajax({
+      type:"POST",
+      url:"https://www.googleapis.com/drive/v2/files/" + fileId + "/parents?access_token=" + drivePlayer.googleAuthInstance.getAccessToken(),
+      type:"POST",
+      data:JSON.stringify(data),
+      contentType:"application/json; charset=utf-8",
+      dataType:"json",
+      success:function (msg) {
+        console.log(msg)
+      },
+      error:function (errormessage) {
+
+        console.log(errormessage)
+
+      }
+    });
+  };
+
   drivePlayer.getFilesFromList = function(plistId) {
     $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken(), function(data){
       var songs = [];

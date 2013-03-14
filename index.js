@@ -67,7 +67,7 @@ var tinyPlayer = tinyPlayer || {};
       plistLi.attr("data-id", plists[i].id);
       plistLi.droppable( {
         drop: function(e) {
-          console.log(e);
+          drivePlayer.copyFileToDir(tinyPlayer.draggedFileId, $(e.target).attr("data-id"));
         }
       } );
       $("#playlist-ul").append(plistLi);
@@ -130,9 +130,11 @@ var tinyPlayer = tinyPlayer || {};
         })
       });
     }
+
     listElement.find("div").draggable({cursor: 'move',
       containment: 'document',
-      helper: tinyPlayer.dragLayer});
+      helper: tinyPlayer.dragLayer
+    });
 
   };
 
