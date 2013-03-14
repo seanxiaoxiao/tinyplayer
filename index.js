@@ -7,12 +7,13 @@
  */
 
 
+var tinyPlayer = tinyPlayer || {};
+
 (function($) {
 
   $("#more-action").click(function() {
-    $("#more").fadeIn("slow", function() {
-      $("#more-action").fadeOut("fast");
-    });
+    $("#more-action").fadeOut("slow");
+    $("#more").fadeIn("slow");
   });
 
   $("#playlist li").mouseover(function() {
@@ -22,5 +23,17 @@
   $("#playlist li").mouseout(function() {
     $(this).removeClass("hover");
   });
+
+  $("#playlist li a").click(function() {
+    console.log("clicked");
+  });
+
+  tinyPlayer.updatePlayList = function() {
+
+  };
+
+  tinyPlayer.updateCurrentList = function() {
+
+  };
 
 })(jQuery);
