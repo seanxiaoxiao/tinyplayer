@@ -80,3 +80,7 @@ ul {
 #playlist li.selected {
     background-color: #9dd6c5;
 }
+
+#controlUI audio {
+    width: 100%;
+}

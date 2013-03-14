@@ -9,9 +9,6 @@ var drivePlayer = drivePlayer || {};
       this.googleAuth();
       this.eventBinding();
       this.createPlaylist();
-      console.log(this.playerInstance);
-      this.playerInstance.initialize();
-      console.log(this.playerInstance.audioElement);
       $('#controlUI').append(this.playerInstance.audioElement);
     },
     googleAuth : function(callback){
