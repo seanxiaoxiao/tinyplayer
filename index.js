@@ -30,11 +30,12 @@ var tinyPlayer = tinyPlayer || {};
       return;
     }
     var newLi = $("<li class='new-list'/>");
-    var input = $("<input type='text'>");
+    var input = $("<input type='text' placeholder='Input new list name'>");
 
     $("#playlist").animate({ scrollTop: $("#playlist-ul").height() }, "slow");
 
     newLi.append(input);
+
     input.blur(function() {
       if (input.val() == "") {
         newLi.remove();
@@ -49,6 +50,7 @@ var tinyPlayer = tinyPlayer || {};
       }
     });
     $("#playlist ul").append(newLi);
+    input.focus();
   });
 
   tinyPlayer.updatePlayList = function(plists) {
@@ -67,7 +69,7 @@ var tinyPlayer = tinyPlayer || {};
       plistLi.attr("data-id", plists[i].id);
       plistLi.droppable( {
         drop: function(e) {
-          console.log(e);
+          drivePlayer.copyFileToDir(tinyPlayer.draggedFileId, $(e.target).attr("data-id"));
         }
       } );
       $("#playlist-ul").append(plistLi);
@@ -80,7 +82,7 @@ var tinyPlayer = tinyPlayer || {};
       shareButton.text("share").addClass("share-btn").attr("href", "#");
       shareButton.click(function() {
         var shareBox = $("<li></li>");
-        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
+        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%' placeholder='share to'>");
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
@@ -120,7 +122,7 @@ var tinyPlayer = tinyPlayer || {};
 
       shareButton.click(function() {
         var shareBox = $("<div></div>");
-        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
+        var shareInput = $("<input type='text' size='200' maxlength='200' length='200' width='100%' placeholder='share to'>");
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
@@ -133,9 +135,11 @@ var tinyPlayer = tinyPlayer || {};
         })
       });
     }
+
     listElement.find("div").draggable({cursor: 'move',
       containment: 'document',
-      helper: tinyPlayer.dragLayer});
+      helper: tinyPlayer.dragLayer
+    });
 
   };
 
