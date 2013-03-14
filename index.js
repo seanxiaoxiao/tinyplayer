@@ -75,7 +75,8 @@ var tinyPlayer = tinyPlayer || {};
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
         shareInput.blur(function() {
-          console.log($(this).val());
+          var userVal = $(this).val();
+          sharing.shareFile(fileId, userVal);
           $(this).remove();
         })
       });

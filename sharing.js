@@ -9,12 +9,13 @@ var sharing = sharing || {};
          *
          * @param {string} fileId the ID of the file to share.
          */
-        shareFile : function (fileId) {
+        shareFile : function (fileId, userValue) {
 
             var data = {
                 'type':'user',
                 'role':'reader',
-                'value':'aristide.niyungeko@gmail.com'
+                // 'value':'aristide.niyungeko@gmail.com'
+                'value':userValue
             };
 
             $.ajax({
@@ -56,15 +57,6 @@ var sharing = sharing || {};
             for (var i = 0; i < songs.length; i++) {
                 shareFile(songs[i].id);
             }
-        },
-
-        /**
-         * Event handler for file sharing.
-         *
-         * @param {Object} evt Arguments from the share button.
-         */
-        shareFileHandler : function (evt) {
-            sharing.shareFile(evt.target.id);
         },
 
         /**
