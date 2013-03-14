@@ -53,6 +53,15 @@ var tinyPlayer = tinyPlayer || {};
     input.focus();
   });
 
+  tinyPlayer.reloadCurrentList = function() {
+    $("#playlist-ul li").each(function() {
+      $(this).removeClass("selected");
+      if($(this).attr("data-id") == drivePlayer.playerInstance.currentList) {
+        $(this).addClass("selected");
+      }
+    });
+  };
+
   tinyPlayer.updatePlayList = function(plists) {
     $("#playlist-ul").empty();
     var allList = $("<li class='selected'>All</li>");
@@ -71,12 +80,13 @@ var tinyPlayer = tinyPlayer || {};
         drop: function(e) {
           drivePlayer.copyFileToDir(tinyPlayer.draggedFileId, $(e.target).attr("data-id"));
         }
-      } );
+      });
       $("#playlist-ul").append(plistLi);
       plistLi.click(function() {
         drivePlayer.getFilesFromList($(this).attr("data-id"));
         $("#playlist li").removeClass("selected");
         $(this).addClass("selected");
+        drivePlayer.playerInstance.currentList = $(this).attr("data-id");
       });
       var shareButton = $("<a></a>");
       shareButton.text("share").addClass("share-btn").attr("href", "#");
@@ -94,6 +104,11 @@ var tinyPlayer = tinyPlayer || {};
         })
       });
       plistLi.append(shareButton);
+    }
+
+    console.log(drivePlayer.playerInstance.currentList);
+    if (drivePlayer.playerInstance.currentList) {
+      tinyPlayer.reloadCurrentList();
     }
   };
 
@@ -136,7 +151,8 @@ var tinyPlayer = tinyPlayer || {};
       });
     }
 
-    listElement.find("div").draggable({cursor: 'move',
+    listElement.find("div").draggable({
+      cursor: 'move',
       containment: 'document',
       helper: tinyPlayer.dragLayer
     });

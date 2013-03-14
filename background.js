@@ -5,6 +5,7 @@ var playerInstance = playerInstance || {};
 		audioElement : document.createElement('audio'),
 		currentPlay : 0,
 		playList : [],
+    currentList : null,
 		//notificationElement : {},
 
 		initialize : function(){

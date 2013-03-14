@@ -25,6 +25,8 @@ var drivePlayer = drivePlayer || {};
       else {
         tinyPlayer.updateCurrentList(drivePlayer.playerInstance.playList);
       }
+
+
     },
 
     googleAuth : function(callback){
