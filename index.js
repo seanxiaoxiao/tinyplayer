@@ -74,6 +74,19 @@ var tinyPlayer = tinyPlayer || {};
       });
       var shareButton = $("<a></a>");
       shareButton.text("share").addClass("share-btn").attr("href", "#");
+      shareButton.click(function() {
+        var shareBox = $("<li></li>");
+        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
+        shareBox.append(shareInput);
+        shareBox.insertAfter($(this).parent());
+        var fileId = $(this).parent().attr("data-id");
+        shareInput.blur(function() {
+          $(this).parent().remove();
+          var userVal = $(this).val();
+          sharing.shareFile(fileId, userVal);
+          $(this).remove();
+        })
+      });
       plistLi.append(shareButton);
     }
   };
@@ -99,8 +112,9 @@ var tinyPlayer = tinyPlayer || {};
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
         shareInput.blur(function() {
-          console.log($(this).val());
           $(this).parent().remove();
+          var userVal = $(this).val();
+          sharing.shareFile(fileId, userVal);
           $(this).remove();
         })
       });

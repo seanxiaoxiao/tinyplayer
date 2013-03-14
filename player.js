@@ -69,13 +69,3 @@ $(document).ready(function(){
   drivePlayer.initialize();
 });
 
-/**
- * Event handler for file sharing.
- *
- * @param {Object} evt Arguments from the share button.
- */
-function shareHandler(evt){
-  drivePlayer.shareFile(evt.target.id);
-}
-
-
