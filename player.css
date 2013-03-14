@@ -64,14 +64,16 @@ ul {
     background: rgba(150,171,165,0.5);
 }
 
-#playlist li .share-btn {
+#current-list-table .share-btn, #playlist li .share-btn {
     display: none;
+
 }
 
-#playlist li:hover .share-btn {
+#current-list-table div:hover .share-btn, #playlist li:hover .share-btn {
     display: block;
     float: right;
     margin-right: 10px;
+    color: #ca6445;
 }
 
 #playlist li {

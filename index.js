@@ -45,6 +45,7 @@ var tinyPlayer = tinyPlayer || {};
         newLi.text(input.val());
         newLi.append(shareBtn);
         input.remove();
+        drivePlayer.createList(input.val());
       }
     });
     $("#playlist ul").append(newLi);
@@ -66,6 +67,16 @@ var tinyPlayer = tinyPlayer || {};
       var shareButton = $("<a href='#' class='share-btn'>Share</a>");
       songRow.append(shareButton);
       listElement.append(songRow);
+
+      shareButton.click(function() {
+        var shareBox = $("<div></div>");
+        var shareInput = $("<input type='text' maxlength='60' length='200'>");
+        shareBox.append(shareInput);
+        shareBox.insertAfter($(this).parent());
+        shareInput.blur(function() {
+          this.remove();
+        })
+      });
     }
     listElement.find("div").draggable();
 

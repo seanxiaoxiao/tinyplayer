@@ -1,5 +1,4 @@
 var drivePlayer = drivePlayer || {};
-var allSongs;
 
 (function(){
   drivePlayer = {
