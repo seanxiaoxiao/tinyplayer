@@ -65,6 +65,11 @@ var tinyPlayer = tinyPlayer || {};
       var plistLi = $("<li>");
       plistLi.text(plists[i].title.substr(0, plists[i].title.indexOf("-plist")));
       plistLi.attr("data-id", plists[i].id);
+      plistLi.droppable( {
+        drop: function(e) {
+          console.log(e);
+        }
+      } );
       $("#playlist-ul").append(plistLi);
       plistLi.click(function() {
         drivePlayer.getFilesFromList($(this).attr("data-id"));
@@ -125,7 +130,9 @@ var tinyPlayer = tinyPlayer || {};
         })
       });
     }
-    listElement.find("div").draggable();
+    listElement.find("div").draggable({cursor: 'move',
+      containment: 'document',
+      helper: tinyPlayer.dragLayer});
 
   };
 
@@ -135,6 +142,12 @@ var tinyPlayer = tinyPlayer || {};
       $("#song-title").text(currentPlay.title);
     }
   };
+
+
+  tinyPlayer.dragLayer = function(event) {
+    tinyPlayer.draggedFileId = $(event.target).;
+    return '<div id="draggableHelper">Help! I am dragged.</div>';
+  }
 
 
   $(document).on("current-list-updated", function(e, data) {
