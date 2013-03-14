@@ -54,6 +54,9 @@ var tinyPlayer = tinyPlayer || {};
   });
 
   tinyPlayer.reloadCurrentList = function() {
+    if (!drivePlayer.playerInstance.currentList) {
+      $($("#playlist-ul li")[0]).addClass("selected");
+    }
     $("#playlist-ul li").each(function() {
       $(this).removeClass("selected");
       if($(this).attr("data-id") == drivePlayer.playerInstance.currentList) {
@@ -70,6 +73,7 @@ var tinyPlayer = tinyPlayer || {};
       drivePlayer.getAllMp3();
       $("#playlist li").removeClass("selected");
       $(this).addClass("selected");
+      drivePlayer.playerInstance.currentList = null;
     });
 
     for (var i = 0; i < plists.length; i++) {
@@ -92,7 +96,7 @@ var tinyPlayer = tinyPlayer || {};
       shareButton.text("share").addClass("share-btn").attr("href", "#");
       shareButton.click(function() {
         var shareBox = $("<li></li>");
-        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%' placeholder='share to'>");
+        var shareInput = $("<input type='text' size='35' maxlength='35' length='50' width='100%' placeholder='share to'>");
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
@@ -106,10 +110,7 @@ var tinyPlayer = tinyPlayer || {};
       plistLi.append(shareButton);
     }
 
-    console.log(drivePlayer.playerInstance.currentList);
-    if (drivePlayer.playerInstance.currentList) {
-      tinyPlayer.reloadCurrentList();
-    }
+    tinyPlayer.reloadCurrentList();
   };
 
   tinyPlayer.updateCurrentList = function(songs) {
@@ -137,7 +138,7 @@ var tinyPlayer = tinyPlayer || {};
 
       shareButton.click(function() {
         var shareBox = $("<div></div>");
-        var shareInput = $("<input type='text' size='200' maxlength='200' length='200' width='100%' placeholder='share to'>");
+        var shareInput = $("<input type='text' size='70' maxlength='70' length='200' width='100%' placeholder='share to'>");
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
         var fileId = $(this).parent().attr("data-id");
