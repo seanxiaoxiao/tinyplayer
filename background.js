@@ -30,11 +30,13 @@ var playerInstance = playerInstance || {};
 			if(this.currentPlay === this.playList.length-1){ return false; }
 			this.setSrc(this.playList[++this.currentPlay].url);
 			this.play();
+			return true;
 		},
 		prev : function(){
 			if(this.currentPlay === 0){ return false; }
 			this.setSrc(this.playList[--this.currentPlay].url);
 			this.play();
+			return true;
 		},
 		reset : function(){
 			this.setSrc(this.playList[this.currentPlay].url);

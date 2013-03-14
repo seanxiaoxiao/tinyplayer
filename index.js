@@ -128,7 +128,7 @@ var tinyPlayer = tinyPlayer || {};
     tinyPlayer.updateCurrentList(songs);
 
     drivePlayer.playerInstance.importList(songs);
-    drivePlayer.playerInstance.play();
+    //drivePlayer.playerInstance.play();
   });
 
   $(document).on("play-list-updated", function(e, data) {
