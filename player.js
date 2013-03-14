@@ -51,6 +51,14 @@ var drivePlayer = drivePlayer || {};
         that.playerInstance.toggle();
         $(this).toggleClass('paused');
       });
+
+      $('#prevButton').on('click', function(){
+        that.playerInstance.prev();
+      });
+      $('#nextButton').on('click', function(){
+        that.playerInstance.next();
+      });
+
     }
 
   };
