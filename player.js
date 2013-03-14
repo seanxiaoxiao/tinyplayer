@@ -7,16 +7,16 @@ var drivePlayer = drivePlayer || {};
 
     initialize : function(){
       this.googleAuth();
-      //this.createPlaylist();
+      this.eventBinding();
+      this.createPlaylist();
     },
     googleAuth : function(callback){
-      gapi.auth.authorize(
-        { 'client_id': '359878478762-nekb4n6jn5lcs03l4hi83i7008os009j.apps.googleusercontent.com', 'scope': 'https://www.googleapis.com/auth/drive' },
-        function() {
-          console.log('login complete');
-          console.log(gapi.auth.getToken());
-        }
-      );
+      this.googleAuthInstance = new OAuth2('google', {
+        client_id: '359878478762.apps.googleusercontent.com',
+        client_secret: '8mTXIIQD9zXgVAHfAESOzfh8',
+        api_scope: 'https://www.googleapis.com/auth/drive'
+      });
+      this.googleAuthInstance.authorize(callback);
     },
 
     // A sample function...
@@ -38,25 +38,8 @@ var drivePlayer = drivePlayer || {};
     },*/
 
     createPlaylist : function(){
-      var retrievePageOfFiles = function(request, result) {
-        request.execute(function(resp) {
-          result = result.concat(resp.items);
-          var nextPageToken = resp.nextPageToken;
-          if (nextPageToken) {
-            request = gapi.client.drive.files.list({'pageToken': nextPageToken});
-            retrievePageOfFiles(request, result);
-          } else {
-            console.log(result);
-          }
-        });
-      }
-      var initialRequest = gapi.client.drive.files.list();
-      retrievePageOfFiles(initialRequest, []);
-
-/*
       $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
         var playlistContainer = $("#playlist tbody");
-        console.log(data);
         // iterate and find the mp3 files
         for(var i=0, count=1; i<data.items.length; ++i){
           if(data.items[i].fileExtension === "mp3"){
@@ -68,7 +51,22 @@ var drivePlayer = drivePlayer || {};
             playlistContainer.append(rowHtml);
           }
         }
-      });*/
+      });
+
+      var data = {
+        'type': 'user',
+        'role': 'reader',
+        'value': 'sean.xiao@west.cmu.edu'
+      };
+      $.ajax({
+        url:"https://www.googleapis.com/drive/v2/files/1SiGLL_GoOZypHQd-M3bf4Y-AVCZCMFwzUwLgEjzNbgQ/permissions?access_token="+this.googleAuthInstance.getAccessToken(),
+        type:"POST",
+        data: JSON.stringify(data),
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        error: function(data){console.log(data); }
+      });
+
     },
 
     eventBinding : function(){
@@ -85,12 +83,9 @@ var drivePlayer = drivePlayer || {};
 
 
 $(document).ready(function(){
-  drivePlayer.eventBinding();
+  drivePlayer.initialize();
 });
 
-function oauth() {
-  drivePlayer.initialize();
-};
 
 /* Information Backup
 var CLIENT_ID = '359878478762.apps.googleusercontent.com';
