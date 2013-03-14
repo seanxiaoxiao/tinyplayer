@@ -10,6 +10,8 @@ var allSongs;
       this.googleAuth();
       this.eventBinding();
       this.createPlaylist();
+      console.log(this.playerInstance.audioElement);
+      $('#controlUI').append(this.playerInstance.audioElement);
     },
     googleAuth : function(callback){
       this.googleAuthInstance = new OAuth2('google', {
@@ -68,7 +70,7 @@ var allSongs;
           console.log(allSongs);
       });
 
-      var data = {
+      /*var data = {
         'type': 'user',
         'role': 'reader',
         'value': 'sean.xiao@west.cmu.edu'
@@ -80,7 +82,7 @@ var allSongs;
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         error: function(data){console.log(data); }
-      });
+      });*/
 
     },
 
