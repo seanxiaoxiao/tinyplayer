@@ -6,6 +6,16 @@ body {
     padding: 10px;
 }
 
+h2 {
+    display: inline-block;
+}
+
+h4 {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+
 a {
     text-align: center;
 }
@@ -125,8 +135,6 @@ ul {
 .controlButton:hover {  opacity: 0.6; }
 
 
-
-
 #current-list table tr td:first-child {
     cursor: pointer;
 }
@@ -138,9 +146,15 @@ ul {
 
 #current-list-table div {
     padding: 3px 3px;
-    color: #37a;
+    color: #825d5b;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
     cursor: pointer;
     font-size: 12px;
+}
+
+#current-list-table div:hover {
+    background-color: #dbdbd4;
 }
 
 #left {

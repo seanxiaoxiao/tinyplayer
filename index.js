@@ -130,10 +130,9 @@ var tinyPlayer = tinyPlayer || {};
   };
 
   tinyPlayer.updateSongTitle = function() {
-    var currentPlay = drivePlayer.playerInstance.currentPlay;
-    console.log(currentPlay);
+    var currentPlay = drivePlayer.playerInstance.playList[drivePlayer.playerInstance.currentPlay];
     if (currentPlay) {
-      $("song-title").text(currentPlay);
+      $("#song-title").text(currentPlay.title);
     }
   };
 
