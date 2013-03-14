@@ -9,7 +9,7 @@ var allSongs;
     initialize : function(){
       this.googleAuth();
       this.eventBinding();
-      this.createPlaylist();
+      this.getAllMp3();
       $('#controlUI').append(this.playerInstance.audioElement);
     },
 
@@ -40,9 +40,22 @@ var allSongs;
       });
     },*/
 
+    getAllMp3: function() {
+      $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken(), function(data){
+        var songs = [];
+        for (var i = 0, count = 1; i < data.items.length; ++i) {
+          if (data.items[i].fileExtension === "mp3") {
+            var song = {id: data.items[i].id, title: data.items[i].title, url: data.items[i].webContentLink};
+            songs.push(song);
+          }
+        }
+        $(document).trigger("current-list-updated", {songs: songs});
+
+      });
+    },
+
     createPlaylist : function(){
       $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
-          console.log(data);
           var playlistContainer = $("#current-list tbody");
         // iterate and find the mp3 files
           var songs = [];

@@ -23,9 +23,7 @@ var tinyPlayer = tinyPlayer || {};
   $("#playlist li").click(function() {
     $("#playlist li").removeClass("selected");
     $(this).addClass("selected");
-
   });
-
 
   $("#new-list").click(function() {
     if ($(".new-list").length > 0) {
@@ -33,6 +31,7 @@ var tinyPlayer = tinyPlayer || {};
     }
     var newLi = $("<li class='new-list'/>");
     var input = $("<input type='text'>");
+
     $("#playlist").animate({ scrollTop: $("#playlist-ul").height() }, "slow");
 
     newLi.append(input);
@@ -42,7 +41,9 @@ var tinyPlayer = tinyPlayer || {};
       }
       else {
         newLi.removeClass("new-list");
+        var shareBtn = $("<a href='#' class='share-btn'>Share</a>");
         newLi.text(input.val());
+        newLi.append(shareBtn);
         input.remove();
       }
     });
@@ -58,5 +59,21 @@ var tinyPlayer = tinyPlayer || {};
   };
 
 
+  $(document).on("current-list-updated", function(e, data) {
+    var tbodyElement = $("#current-list-table tbody");
+    var songs = data.songs;
+
+    for (var i = 0; i < songs.length; i++) {
+      var song = songs[i];
+      var songRow = $("<tr/>");
+      songRow.attr("data-link", song.url);
+      songRow.attr("data-id", song.id);
+      var songCell = $("<td/>");
+      songCell.text(song.title);
+      songRow.append(songCell);
+      console.log("fdsfdsfdsf");
+      tbodyElement.append(songRow);
+    }
+  });
 
 })(jQuery);
