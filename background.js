@@ -14,6 +14,8 @@ var playerInstance = playerInstance || {};
 			this.audioElement.setAttribute('type', 'audio/mpeg');
 			this.audioElement.addEventListener('ended', function(e){
 			 	that.next();
+			 	chrome.extension.getViews({type:'popup'})[0].drivePlayer.refreshDancer();
+			 	chrome.extension.getViews({type:'popup'})[0].drivePlayer.dancerInstance.play();
 			});
 		},
 		setSrc : function(src){
