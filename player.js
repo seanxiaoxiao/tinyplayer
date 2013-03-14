@@ -56,7 +56,7 @@ var allSongs;
                 var shareButtons = $("#current-list tbody button");
 
                 for (var i = 0; i < shareButtons.length; i++) {
-                    shareButtons[i].addEventListener('click', shareHandler);
+                    shareButtons[i].addEventListener('click', sharing.shareHandler);
                 }
 
                 allSongs = songs;
@@ -83,15 +83,6 @@ var allSongs;
 $(document).ready(function () {
     drivePlayer.initialize();
 });
-
-/**
- * Event handler for file sharing.
- *
- * @param {Object} evt Arguments from the share button.
- */
-function shareHandler(evt) {
-    drivePlayer.shareFile(evt.target.id);
-}
 
 
 
