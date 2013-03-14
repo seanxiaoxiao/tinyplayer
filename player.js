@@ -68,6 +68,8 @@ var allSongs;
 
           allSongs = songs;
           console.log(allSongs);
+//          addPlaylist(allSongs);
+          uploadPlaylist("newplaylist",JSON.stringify( allSongs));
       });
 
       /*var data = {
