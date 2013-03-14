@@ -10,6 +10,7 @@ var drivePlayer = drivePlayer || {};
       this.eventBinding();
       this.createPlaylist();
     },
+
     googleAuth : function(callback){
       this.googleAuthInstance = new OAuth2('google', {
         client_id: '359878478762.apps.googleusercontent.com',
