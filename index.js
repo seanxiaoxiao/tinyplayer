@@ -70,7 +70,7 @@ var tinyPlayer = tinyPlayer || {};
 
       shareButton.click(function() {
         var shareBox = $("<div></div>");
-        var shareInput = $("<input type='text' maxlength='60' length='200'>");
+        var shareInput = $("<input type='text' maxlength='200' length='200' width='100%'>");
         shareBox.append(shareInput);
         shareBox.insertAfter($(this).parent());
         shareInput.blur(function() {
