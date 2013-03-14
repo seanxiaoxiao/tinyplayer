@@ -11,7 +11,6 @@ var allSongs;
             this.googleAuth();
             this.eventBinding();
             this.createPlaylist();
-            this.getPlaylists();
             $('#controlUI').append(this.playerInstance.audioElement);
         },
 
@@ -140,6 +139,7 @@ var allSongs;
 
 $(document).ready(function () {
     drivePlayer.initialize();
+    playlist.initialize();
 });
 
 /**
