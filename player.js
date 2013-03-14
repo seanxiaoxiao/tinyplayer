@@ -51,8 +51,9 @@ var allSongs;
                       "<tr data-link='" + data.items[i].webContentLink + "'>" +
                           "<td>" + String(count++) + "</td>" +
                           "<td>" + data.items[i].title + "</td>" +
-                          "<td><button>share</button></td>";
+                          "<td><button id="+data.items[i].id+">share</button></td>";
                   playlistContainer.append(rowHtml);
+                  
 
                   //also add to the songs collection
                   var song = new Object();
@@ -64,8 +65,14 @@ var allSongs;
               }
           }
 
+          // Declare the sharing handler
+          var shareButtons = $("#current-list tbody button");
+          
+          for (var i = 0; i < shareButtons.length; i++){
+            shareButtons[i].addEventListener('click', shareHandler);
+          }
+
           allSongs = songs;
-          console.log(allSongs);
       });
 
       /*var data = {
@@ -82,6 +89,64 @@ var allSongs;
         error: function(data){console.log(data); }
       });*/
 
+    },
+
+    /**
+     * Start the file sharing.
+     *
+     * @param {string} fileId the ID of the file to share.
+     */
+    shareFile : function(fileId){
+
+      var data = {
+        'type': 'user',
+        'role': 'reader',
+        'value': 'aristide.niyungeko@gmail.com'
+      };
+
+      $.ajax({
+            type: "POST",
+            url: "https://www.googleapis.com/drive/v2/files/"+fileId+"/permissions?access_token="+this.googleAuthInstance.getAccessToken(),
+            type:"POST",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+               console.log(msg)
+            },
+            error: function (errormessage) {
+
+                console.log(errormessage)
+
+            }
+        });
+    },
+
+    /**
+     * Insert a new permission.
+     *
+     * @param {String} fileId ID of the file to insert permission for.
+     * @param {String} value User or group e-mail address, domain name or
+     *                       {@code null} "default" type.
+     * @param {String} type The value "user", "group", "domain" or "default".
+     * @param {String} role The value "owner", "writer" or "reader".
+     */
+    insertPermission : function(fileId, type, role, callback) {
+      var body = {
+        'value': value,
+        'type': type,
+        'role': role
+      };
+      var request = gapi.client.drive.permissions.insert({
+        'fileId': fileId,
+        'resource': body
+      }); 
+      if (!callback) {
+        callback = function(resp) {
+          console.log(resp)
+        };
+      }
+      request.execute(callback);
     },
 
     eventBinding : function(){
@@ -107,12 +172,13 @@ $(document).ready(function(){
   drivePlayer.initialize();
 });
 
+/**
+ * Event handler for file sharing.
+ *
+ * @param {Object} evt Arguments from the share button.
+ */
+function shareHandler(evt){
+  drivePlayer.shareFile(evt.target.id);
+}
 
-/* Information Backup
-var CLIENT_ID = '359878478762.apps.googleusercontent.com';
-var SCOPES = [
-  'https://www.googleapis.com/auth/drive',
-  'https://www.googleapis.com/auth/userinfo.email',
-  'https://www.googleapis.com/auth/userinfo.profile'
-];
-*/
+
