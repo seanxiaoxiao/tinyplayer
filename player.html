@@ -2,7 +2,8 @@
 <html>
 <head>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet"
+          type="text/css">
     <link rel="stylesheet" href="player.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
@@ -10,49 +11,52 @@
     <link href="player.css" rel="stylesheet">
 </head>
 <body>
-    <div id="title"><h2>Tiny Player</h2></div>
-    <div id="controlUI"> <div class="cover-image"><div id="toggleButton"></div></div> </div>
+<div id="title"><h2>Tiny Player</h2></div>
 
-    <div>
-        <div id="current-list">
-            <table id="current-list-table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                </tr>
-                </thead>
-                <tbody>
+    <div id="controlUI">
+        <div class="cover-image">
+            <div id="toggleButton">
 
-                </tbody>
-            </table>
-        </div>
-        <div id="more" style="display:none;">
-            <div id="playlist">
-                <p>
-                    Play lists
-                </p>
-                <ul id="playlist-ul">
-                    <li class="selected">All</li>
-                    <li>Traditional music <a href="#" class="share-btn">Share</a></li>
-                    <li>Traditional music <a href="#" class="share-btn">Share</a></li>
-                    <li>Traditional music <a href="#" class="share-btn">Share</a></li>
-                    <li>Traditional music <a href="#" class="share-btn">Share</a></li>
-                    <li>Traditional music <a href="#" class="share-btn">Share</a></li>
-
-                    <li>Traditional music <a href="#" class="share-btn">Share</a></li>
-                    <li>Popular music <a href="#" class="share-btn">Share</a></li>
-                    <li>Art music <a href="#" class="share-btn">Share</a></li>
-                </ul>
-            </div>
-            <div id="action">
-                <span class="btn"><a href="#" id="new-list">New Playlist</a></span>
             </div>
         </div>
-
     </div>
+<div id="left">
+    <p>
+        Current List
+    </p>
+    <div id="current-list">
+        <table id="current-list-table">
+            <tbody>
 
-    <script src="index.js"></script>
-    <script src="player.js"></script>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="right">
+    <div id="playlist">
+        <p>
+            Play lists
+        </p>
+        <ul id="playlist-ul">
+            <li class="selected">All</li>
+            <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+            <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+            <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+            <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+            <li>Traditional music <a href="#" class="share-btn">Share</a></li>
 
+            <li>Traditional music <a href="#" class="share-btn">Share</a></li>
+            <li>Popular music <a href="#" class="share-btn">Share</a></li>
+            <li>Art music <a href="#" class="share-btn">Share</a></li>
+        </ul>
+    </div>
+    <div id="action">
+        <span class="btn"><a href="#" id="new-list">New Playlist</a></span>
+    </div>
+</div>
+
+<script src="index.js"></script>
+<script src="player.js"></script>
+<script src="playlist.js"></script>
 </body>
 </html>

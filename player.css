@@ -2,7 +2,8 @@ body {
     background: #e1e8e5;
     font-size: 11px;
     font-family: "Open Sans";
-    width: 650px;
+    width: 640px;
+    padding: 10px;
 }
 
 a {
@@ -112,18 +113,19 @@ ul {
     cursor: pointer;
 }
 
-#current-list {
+#left {
     display: inline-block;
-    max-width: 380px;
+    width: 380px;
     height: 400px;
     overflow-y: scroll;
 }
 
-#playlist {
+#right {
     max-width: 240px;
     margin-left: 20px;
     height: 400px;
     display: inline-block;
     overflow-y: scroll;
-    clear: both;
+
 }
+

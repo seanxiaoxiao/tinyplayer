@@ -26,24 +26,6 @@ var allSongs;
       this.googleAuthInstance.authorize(callback);
     },
 
-    // A sample function...
-    /*loadFirstSong : function(){
-      var that = this;
-      $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
-        // iterate and find the first mp3 file
-        var fileLink;
-        for(var i=0; i<data.items.length; ++i){
-          if(data.items[i].fileExtension === "mp3"){
-            fileLink = data.items[i].webContentLink;
-            break;
-          }
-        }
-        // load the mp3 file into the background audio element
-        that.playerInstance.setSrc(fileLink);
-        that.playerInstance.play();
-      });
-    },*/
-
     getAllMp3: function() {
       $.get("https://www.googleapis.com/drive/v2/files?access_token=" + this.googleAuthInstance.getAccessToken(), function(data){
         var songs = [];
@@ -72,7 +54,7 @@ var allSongs;
                           "<td>" + data.items[i].title + "</td>" +
                           "<td><button id="+data.items[i].id+">share</button></td>";
                   playlistContainer.append(rowHtml);
-                  
+
 
                   //also add to the songs collection
                   var song = new Object();
@@ -86,7 +68,7 @@ var allSongs;
 
           // Declare the sharing handler
           var shareButtons = $("#current-list tbody button");
-          
+
           for (var i = 0; i < shareButtons.length; i++){
             shareButtons[i].addEventListener('click', shareHandler);
           }
@@ -159,7 +141,7 @@ var allSongs;
       var request = gapi.client.drive.permissions.insert({
         'fileId': fileId,
         'resource': body
-      }); 
+      });
       if (!callback) {
         callback = function(resp) {
           console.log(resp)
