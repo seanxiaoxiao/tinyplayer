@@ -1,0 +1,10 @@
+#controlUI { 
+	background-color: #111;
+	color: #eee;
+}
+
+.controlIcon { cursor: pointer; }
+
+#playlist tbody tr td:first-child {
+	cursor: pointer;
+}
