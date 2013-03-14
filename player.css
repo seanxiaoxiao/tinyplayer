@@ -106,3 +106,7 @@ ul {
     overflow-y: scroll;
     clear: both;
 }
+
+#controlUI audio {
+    width: 100%;
+}
