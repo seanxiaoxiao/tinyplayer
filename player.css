@@ -125,22 +125,31 @@ ul {
     cursor: pointer;
 }
 
-#current-list {
+#current-list-table {
     height: 300px;
-}
-
-#left {
-    display: inline-block;
-    width: 380px;
-    max-height: 400px;
     overflow-y: scroll;
 }
 
+#current-list-table div {
+    padding: 3px 3px;
+    color: #37a;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#left {
+    display: block;
+    width: 380px;
+    max-height: 400px;
+    float: left;
+}
+
 #right {
-    max-width: 240px;
+    width: 220px;
     margin-left: 25px;
     max-height: 400px;
-    display: inline-block;
+    display: block;
+    float: left;
 }
 
 #playlist-ul {
