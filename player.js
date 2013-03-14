@@ -1,4 +1,5 @@
 var drivePlayer = drivePlayer || {};
+var allSongs;
 
 (function(){
   drivePlayer = {
@@ -9,6 +10,8 @@ var drivePlayer = drivePlayer || {};
       this.googleAuth();
       this.eventBinding();
       this.createPlaylist();
+      console.log(this.playerInstance.audioElement);
+      $('#controlUI').append(this.playerInstance.audioElement);
     },
 
     googleAuth : function(callback){
@@ -40,21 +43,35 @@ var drivePlayer = drivePlayer || {};
 
     createPlaylist : function(){
       $.get("https://www.googleapis.com/drive/v2/files?access_token="+this.googleAuthInstance.getAccessToken(), function(data){
-        var playlistContainer = $("#playlist tbody");
+          console.log(data);
+          var playlistContainer = $("#current-list tbody");
         // iterate and find the mp3 files
-        for(var i=0, count=1; i<data.items.length; ++i){
-          if(data.items[i].fileExtension === "mp3"){
-            var rowHtml = 
-              "<tr data-link='"+data.items[i].webContentLink+"'>"+
-              "<td>"+String(count++)+"</td>"+
-              "<td>"+data.items[i].title+"</td>"+
-              "<td><button>share</button></td>";
-            playlistContainer.append(rowHtml);
+          var songs = [];
+          // iterate and find the mp3 files
+          for (var i = 0, count = 1; i < data.items.length; ++i) {
+              if (data.items[i].fileExtension === "mp3") {
+                  var rowHtml =
+                      "<tr data-link='" + data.items[i].webContentLink + "'>" +
+                          "<td>" + String(count++) + "</td>" +
+                          "<td>" + data.items[i].title + "</td>" +
+                          "<td><button>share</button></td>";
+                  playlistContainer.append(rowHtml);
+
+                  //also add to the songs collection
+                  var song = new Object();
+                  song.id = data.items[i].id;
+                  song.title = data.items[i].title;
+                  song.url = data.items[i].webContentLink;
+
+                  songs.push(song);
+              }
           }
-        }
+
+          allSongs = songs;
+          console.log(allSongs);
       });
 
-      var data = {
+      /*var data = {
         'type': 'user',
         'role': 'reader',
         'value': 'sean.xiao@west.cmu.edu'
@@ -66,7 +83,7 @@ var drivePlayer = drivePlayer || {};
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         error: function(data){console.log(data); }
-      });
+      });*/
 
     },
 
