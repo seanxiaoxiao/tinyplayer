@@ -145,7 +145,7 @@ var tinyPlayer = tinyPlayer || {};
 
 
   tinyPlayer.dragLayer = function(event) {
-    tinyPlayer.draggedFileId = $(event.target).;
+    tinyPlayer.draggedFileId = $(event.target).attr("data-id");
     return '<div id="draggableHelper">Help! I am dragged.</div>';
   }
 
